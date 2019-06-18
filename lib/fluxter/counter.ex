@@ -40,7 +40,7 @@ defmodule Fluxter.Counter do
     {:stop, :normal, :ok, state}
   end
 
-  def handle_call({:get_count}, %__MODULE__{value: value} = state) do
+  def handle_call({:get_count}, _from, %__MODULE__{value: value} = state) do
     {:reply, value, state}
   end
 end
