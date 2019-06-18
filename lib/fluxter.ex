@@ -360,6 +360,10 @@ defmodule Fluxter do
       def flush_counter(counter) do
         Fluxter.Counter.flush(counter, __MODULE__)
       end
+
+      def get_count(counter) do
+        Fluxter.Counter.get_count(counter)
+      end
     end
   end
 

@@ -23,6 +23,10 @@ defmodule Fluxter.Counter do
     GenServer.call(counter, {:flush, pool})
   end
 
+  def get_count(counter) do
+    GenServer.call(counter, {:get_count})
+  end
+
   def handle_cast({:increment, change}, %__MODULE__{value: value} = state) do
     {:noreply, %{state | value: value + change, flush?: true}}
   end
@@ -34,5 +38,9 @@ defmodule Fluxter.Counter do
     end
 
     {:stop, :normal, :ok, state}
+  end
+
+  def handle_call({:get_count}, %__MODULE__{value: value} = state) do
+    {:reply, value, state}
   end
 end
